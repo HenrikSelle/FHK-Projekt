@@ -1,0 +1,33 @@
+SQL Code-Liste zur Datensichtung
+
+SELECT Zeitschriftenartikel.[ID], Zeitschriftenartikel.[Titel], Zeitschriftenartikel.[Bezirk], Zeitschriftenartikel.Datum
+FROM Zeitschriftenartikel
+WHERE (((Zeitschriftenartikel.[Bezirk])=14));
+//Artikel mit Sudetenland-Bezug
+
+SELECT Pers_Artikel.Name, Pers_Artikel.Vorname, Pers_Artikel.ID, Pers_Artikel.Id_P, Pers_Artikel.Spezifikation, Pers_Artikel.Bezirk
+FROM Pers_Artikel
+WHERE (((Pers_Artikel.Spezifikation) Like "*(FHK)*") AND ((Pers_Artikel.Bezirk)=14));
+//Personen in Artikeln mit Sudetenlandbezug, die eine FHK Spezifikation besitzen 
+
+SELECT Kat3_BelegungE.Artikel, Kat3_BelegungE.Kat, Kat3_BelegungE.Titel, Kat3_BelegungE.Datum, Kat3_BelegungE.Bezirk
+FROM Kat3_BelegungE
+WHERE (((Kat3_BelegungE.Bezirk)=14));
+//Kategorien aller Beiträge mit Sudetenland-Bezug
+
+SELECT Kat3_BelegungE.Artikel, Kat3_BelegungE.Kat, Kat3_BelegungE.Titel, Kat3_BelegungE.Datum, Kat3_BelegungE.Bezirk
+FROM Kat3_BelegungE
+WHERE (((Kat3_BelegungE.Bezirk)<>14));
+//Kategorien aller Beiträge AUSSER denen mit Sudetenland-Bezug
+
+SELECT Kat3_BelegungE.Kat, COUNT(*) AS AnzahlArtikel
+FROM Kat3_BelegungE
+WHERE Kat3_BelegungE.Bezirk = 14
+GROUP BY Kat3_BelegungE.Kat;
+//Anzahl von Artikeln jeder Kategorie mit Sudetenland-Bezug
+
+SELECT Kat3_BelegungE.Kat, COUNT(*) AS AnzahlArtikel
+FROM Kat3_BelegungE
+WHERE Kat3_BelegungE.Bezirk <> 14
+GROUP BY Kat3_BelegungE.Kat;
+//Anzahl von Artikeln jeder Kategorie OHNE Sudetenland-Bezug
