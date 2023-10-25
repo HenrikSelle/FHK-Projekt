@@ -1,0 +1,5 @@
+SELECT Year(Datum) & '-' & Format(Datum,'mm') AS JahrMonat, Count(*) AS AnzahlArtikel, Zeitschriftenartikel.Bezirk, Zeitschriftenartikel.Seite
+FROM Zeitschriftenartikel
+GROUP BY Year(Datum) & '-' & Format(Datum,'mm'), Zeitschriftenartikel.Bezirk, Zeitschriftenartikel.Seite
+HAVING (((Zeitschriftenartikel.Bezirk)=14) AND ((Zeitschriftenartikel.Seite)=1));
+//Berechnung Artikel pro Jahr+Monat
